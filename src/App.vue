@@ -7,12 +7,29 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/HelloWorld.vue";
+import axios from "axios";
 
 export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  created() {
+
+  },
+  mounted() {
+    this.getWeather1();
+  },
+  methods: {
+    async getWeather1() {
+      const res = await axios.get("https://wis.qq.com/weather/common?source=pc&weather_type=observe|forecast_24h|air&province=福建省&city=漳州市&county=龙海区");
+      console.log(res);
+
+    },
+    async getWeather2() {
+      
+    }
   }
 }
 </script>
