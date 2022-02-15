@@ -62,19 +62,19 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  width: 100vw;
   margin-top: 60px;
 }
 .img-container {
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
 }
 img {
-  width: 200px;
-  height: 200px;
-  margin: 30px;
+  width: 150px;
+  height: 150px;
+  margin: 15px;
 }
 iframe {
   width: 200px;
@@ -102,6 +102,6 @@ iframe {
   justify-content: center;
 }
 .json-data {
-  width: 80%;
+  width: 95%;
 }
 </style>
