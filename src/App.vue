@@ -1,37 +1,59 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/img/doge.jpg">
-    <img alt="Vue logo" src="./assets/img/meme.jpg">
-    <HelloWorld msg="天气预报哦"/>
+    <div class="img-container">
+      <img alt="Vue logo" src="./assets/img/doge.jpg" />
+      <img alt="Vue logo" src="./assets/img/meme.jpg" />
+    </div>
+    <HelloWorld msg="天气预报哦" />
+    <div class="btns-container">
+      <div @click="getWeather" class="get-weather-btn">获取天气预报</div>
+      <div @click="weatherData = {}" class="get-weather-btn">清除</div>
+    </div>
+    <div class="json-data-container">
+      <JsonViewer
+        :value="weatherData"
+        :expand-depth="5"
+        copyable
+        boxed
+        sort
+        class="json-data"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
-import axios from "axios";
+import { jsonp } from "vue-jsonp";
+import JsonViewer from "vue-json-viewer";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    HelloWorld,
+    JsonViewer,
   },
-  created() {
-
+  data() {
+    return {
+      weatherUrl: "https://wis.qq.com/weather/common",
+      weatherData: {},
+    };
   },
-  mounted() {
-    this.getWeather1();
-  },
+  created() {},
+  mounted() {},
   methods: {
-    async getWeather1() {
-      const res = await axios.get("https://wis.qq.com/weather/common?source=pc&weather_type=observe|forecast_24h|air&province=福建省&city=漳州市&county=龙海区");
-      console.log(res);
-
+    async getWeather() {
+      const res = await jsonp(this.weatherUrl, {
+        source: "pc",
+        weather_type: "observe|forecast_24h|air",
+        province: "福建省",
+        city: "漳州市",
+        county: "龙海区",
+      });
+      this.weatherData = res;
     },
-    async getWeather2() {
-      
-    }
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
@@ -39,13 +61,47 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
+  width: 100vw;
   margin-top: 60px;
+}
+.img-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 img {
   width: 200px;
   height: 200px;
   margin: 30px;
+}
+iframe {
+  width: 200px;
+  height: 200px;
+  border: 1px solid red;
+}
+.btns-container {
+  display: flex;
+  justify-content: center;
+}
+.get-weather-btn {
+  border: 1px solid #188cff;
+  height: 40px;
+  width: 120px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  margin: 20px;
+}
+.json-data-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.json-data {
+  width: 80%;
 }
 </style>

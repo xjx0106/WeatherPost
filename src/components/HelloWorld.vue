@@ -16,6 +16,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .hello {
+  text-align: center;
   font-size: 20px;
   margin-top: 20px;
 }
