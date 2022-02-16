@@ -7,8 +7,9 @@
     <HelloWorld msg="天气预报哦" />
     <div class="btns-container">
       <div @click="getWeather" class="get-weather-btn">获取天气预报</div>
-      <div @click="weatherData = {}" class="get-weather-btn">清除</div>
+      <div @click="clearWeather" class="get-weather-btn">清除</div>
     </div>
+    <div class="request-time">{{ requestTime }}</div>
     <div class="json-data-container">
       <JsonViewer
         :value="weatherData"
@@ -37,6 +38,7 @@ export default {
     return {
       weatherUrl: "https://wis.qq.com/weather/common",
       weatherData: {},
+      requestTime: "",
     };
   },
   created() {},
@@ -50,8 +52,20 @@ export default {
         city: "漳州市",
         county: "龙海区",
       });
-      this.weatherData = res;
+      if (res && res.data) {
+        this.weatherData = res;
+
+        const date = new Date();
+        const currentDate = date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日";
+        const currentTime = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+
+        this.requestTime = "天气数据获取于： " + currentDate + "  " + currentTime;
+      }
     },
+    clearWeather() {
+      this.requestTime = "";
+      this.weatherData = {};
+    }
   },
 };
 </script>
@@ -94,7 +108,14 @@ iframe {
   justify-content: center;
   align-items: center;
   user-select: none;
-  margin: 20px;
+  margin: 20px 20px 10px 20px;
+}
+.request-time {
+  width: 100%;
+  text-align: center;
+  color: dimgray;
+  font-size: 15px;
+  height: 20px;
 }
 .json-data-container {
   width: 100%;
