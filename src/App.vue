@@ -57,7 +57,29 @@ export default {
 
         const date = new Date();
         const currentDate = date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日";
-        const currentTime = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+
+        let hour = "";
+        if(date.getHours() < 10) {
+          hour = "0" + date.getHours() + "";
+        } else {
+          hour = date.getHours();
+        }
+
+        let minute = "";
+        if(date.getMinutes() < 10) {
+          minute = "0" + date.getMinutes();
+        } else {
+          minute = date.getMinutes();
+        }
+
+        let second = "";
+        if(date.getSeconds() < 10) {
+          second = "0" + date.getSeconds();
+        } else {
+          second = date.getSeconds();
+        }
+
+        const currentTime = hour + ":" + minute + ":" + second;
 
         this.requestTime = "天气数据获取于： " + currentDate + "  " + currentTime;
       }
