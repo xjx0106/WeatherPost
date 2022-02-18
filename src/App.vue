@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="weather-container">
-      <WeatherNow :nowData="weatherData.now" />
+      <WeatherNow :nowData="weatherData.now" :weekData="weatherData.week"/>
       <WeatherToday :todayData="weatherData.today" />
       <WeatherWeek :weekData="weatherData.week" />
       <div class="developer-view">

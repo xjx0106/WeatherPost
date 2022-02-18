@@ -23,7 +23,12 @@
 export default {
   name: "WeatherToday",
   props: {
-    todayData: Object,
+    todayData: {
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
   },
   filters: {
     timeFilter(val) {

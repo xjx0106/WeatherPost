@@ -36,7 +36,12 @@
 export default {
   name: "WeatherWeek",
   props: {
-    weekData: Object,
+    weekData: {
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
   },
   filters: {
     showDate(val) {
