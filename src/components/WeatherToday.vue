@@ -58,19 +58,19 @@ export default {
         day_show = day + "日";
       }
 
-      const hour = fullTime.substring(8, 10);
+      const hour = parseInt(fullTime.substring(8, 10));
       let _hour = "";
-      if (parseInt(hour) >= 0 && parseInt(hour) < 4) {
-        if (parseInt(hour) === 0) {
+      if (hour >= 0 && hour < 4) {
+        if (hour === 0) {
           _hour = "半夜12";
         } else {
           _hour = "半夜" + hour;
         }
-      } else if (parseInt(hour) < 12) {
+      } else if (hour < 12) {
         _hour = "上午" + hour;
-      } else if (parseInt(hour) === 12) {
+      } else if (hour === 12) {
         _hour = "中午" + hour;
-      } else if (parseInt(hour) > 12 && parseInt(hour) < 18) {
+      } else if (hour > 12 && hour < 18) {
         _hour = "下午" + (hour - 12);
       } else {
         _hour = "晚上" + (hour - 12);
@@ -133,8 +133,7 @@ export default {
       "" +
       nowSecond;
   },
-  methods: {
-  },
+  methods: {},
 };
 </script>
 
