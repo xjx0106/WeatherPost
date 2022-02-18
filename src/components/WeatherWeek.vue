@@ -1,11 +1,31 @@
 <template>
   <div class="weather-week">
-    本周天气
+    <div class="title">本周天气</div>
     <div class="weather-days">
-      <div class="weather-day" v-for="(item, index) in daysData" :key="index">
-        {{ "温度" + item.temperature }}
-        {{ "天气" + item.weather }}
-        {{ "时间" + item.time }}
+      <div class="weather-day" v-for="(item, index) in weekData" :key="index">
+        <div class="day-time">
+          {{ weekData[index] && weekData[index].time | showDate }}
+        </div>
+        <div class="day-data">
+          <div class="day-weather-type">
+            <div class="day-weather-type-1">
+              {{ weekData[index] && weekData[index].day_weather }}
+            </div>
+            <div class="day-weather-type-to">转</div>
+            <div class="day-weather-type-2">
+              {{ weekData[index] && weekData[index].night_weather }}
+            </div>
+          </div>
+          <div class="day-weather-temperature">
+            <div class="day-tp-1">
+              {{ weekData[index] && weekData[index].min_degree }}
+            </div>
+            <div class="day-tp-to">~</div>
+            <div class="day-tp-2">
+              {{ weekData[index] && weekData[index].max_degree + " 度"}}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -17,19 +37,38 @@ export default {
   props: {
     weekData: Object,
   },
+  filters: {
+    showDate(val) {
+      const date = new Date();
+      const nowMonth = date.getMonth() + 1; // number
+      const nowDay = date.getDate(); // number
+
+      let res = "";
+
+      if (val) {
+        const dateArr = val.split("-");
+        const dataMonth = parseInt(dateArr[1]);
+        const dataDay = parseInt(dateArr[2]);
+        res = dateArr[1] + "月" + dateArr[2] + "日";
+        if (nowMonth === dataMonth) {
+          if (nowDay === dataDay + 1) {
+            res = "昨天";
+          } else if (nowDay === dataDay + 2) {
+            res = "前天";
+          } else if (nowDay === dataDay) {
+            res = "今天";
+          } else if (nowDay === dataDay - 1) {
+            res = "明天";
+          } else if (nowDay === dataDay - 2) {
+            res = "后天";
+          }
+        }
+      }
+      return res;
+    },
+  },
   data() {
-    return {
-      daysData: [
-        { temperature: "22", weather: "晴", time: "明天" },
-        { temperature: "22", weather: "晴", time: "后天" },
-        { temperature: "22", weather: "晴", time: "2月22日 周三" },
-        { temperature: "22", weather: "晴", time: "2月23日 周四" },
-        { temperature: "22", weather: "晴", time: "2月24日 周五" },
-        { temperature: "22", weather: "晴", time: "2月25日 周六" },
-        { temperature: "22", weather: "晴", time: "2月26日 周日" },
-        { temperature: "22", weather: "晴", time: "2月27日 周一" },
-      ],
-    };
+    return {};
   },
 };
 </script>
@@ -39,18 +78,73 @@ export default {
 .weather-week {
   text-align: center;
   font-size: 20px;
-  border: 1px solid red;
-  background-color: rgb(62, 255, 165);
+  background-color: rgb(128, 198, 255);
+  padding-bottom: 50px;
+  .title {
+    font-size: 65px;
+    padding-top: 50px;
+  }
   .weather-days {
+    margin-top: 30px;
     // border: 1px solid orange;
     display: flex;
     width: 100%;
     flex-direction: column;
+    margin-bottom: 30px;
+    > :first-child {
+      border-top: 3px solid white;
+
+    }
     .weather-day {
-      border: 1px solid green;
-      height: 70px;
+      border-left: 3px solid white;
+      border-right: 3px solid white;
+      border-bottom: 3px solid white;
+      height: 100px;
       width: calc(100% - 40px);
-      margin: 10px 20px;
+      margin: 0px 20px;
+      display: flex;
+      .day-time {
+        width: 40%;
+        font-size: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(188, 225, 255);
+      }
+      .day-data {
+        background-color: rgb(167, 215, 255);
+        width: 60%;
+        .day-weather-type {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .day-weather-type-1 {
+            font-size: 25px;
+          }
+          .day-weather-type-to {
+            font-size: 20px;
+            margin: 0px 10px;
+          }
+          .day-weather-type-2 {
+            font-size: 25px;
+          }
+        }
+        .day-weather-temperature {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .day-tp-1 {
+            font-size: 25px;
+          }
+          .day-tp-to {
+            font-size: 20px;
+            margin: 0px 10px;
+          }
+          .day-tp-2 {
+            font-size: 25px;
+          }
+        }
+      }
     }
   }
 }

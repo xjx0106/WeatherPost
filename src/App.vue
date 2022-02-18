@@ -56,7 +56,9 @@ export default {
     };
   },
   created() {},
-  mounted() {},
+  mounted() {
+    this.getWeather();
+  },
   methods: {
     async getWeather() {
       const res = await jsonp(this.weatherUrl, {
@@ -68,6 +70,10 @@ export default {
       });
       if (res && res.data) {
         this.weatherJsonData = res;
+        this.weatherData.now = res.data.observe;
+        this.weatherData.today = res.data.forecast_1h;
+        this.weatherData.week = res.data.forecast_24h;
+
 
         const date = new Date();
         const currentDate =
