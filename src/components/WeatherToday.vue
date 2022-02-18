@@ -177,13 +177,14 @@ export default {
       .hour-data {
         background-color: rgb(255, 200, 97);
         width: 44%;
-        font-size: 28px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         .hour-temperature {
+          font-size: 28px;
         }
         .hour-type {
+          font-size: 28px;
         }
       }
     }
