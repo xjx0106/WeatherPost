@@ -1,17 +1,21 @@
 <template>
   <div class="weather-today">
-    <div class="title">今天天气<br />（按小时）</div>
+    <div class="title">未来的<br />12个小时</div>
     <div class="weather-hours">
-      <div class="weather-hour" v-for="(item, index) in todayData" :key="index">
+      <div
+        class="weather-hour"
+        v-for="(item, index) in hoursDataShow"
+        :key="index"
+      >
         <div class="hour-time">
-          <span> {{ todayData[index].update_time | timeFilter }} <br /> </span>
+          <span> {{ item.update_time | timeFilter }} <br /> </span>
         </div>
         <div class="hour-data">
           <div class="hour-temperature">
-            {{ "温度:" + todayData[index].degree }}
+            {{ "温度:" + item.degree }}
           </div>
           <div class="hour-type">
-            {{ "天气:" + todayData[index].weather }}
+            {{ "天气:" + item.weather }}
           </div>
         </div>
       </div>
@@ -77,35 +81,59 @@ export default {
     },
   },
   computed: {
-    todayDataDisposed() {
-      const res = this.todayData;
-      res.map((item) => {
-        const fullTime = item.update_time || "";
-        const year = fullTime.substring(0, 4);
-        const month = fullTime.substring(4, 6);
-        const day = fullTime.substring(6, 8);
-        const hour = fullTime.substring(8, 10);
-        // console.log(year + "年" + month + "月" + day + "日" + hour + "时");
-
-        const timeState = year + "年" + month + "月" + day + "日" + hour + "时";
-        return timeState;
+    hoursData() {
+      let res = [];
+      for (let i in this.todayData) {
+        res.push(this.todayData[i]);
+      }
+      return res;
+    },
+    hoursDataShow() {
+      let hoursAfter = this.hoursData.filter((item) => {
+        return item.update_time > this.nowMonthDayHourMinSec;
       });
+      let res = [];
+      if (hoursAfter.length > 12) {
+        res = hoursAfter.slice(0, 12);
+      }
       return res;
     },
   },
   data() {
     return {
-      // hoursData: [
-      //   { temperature: "22", weather: "晴", time: "11:00" },
-      //   { temperature: "22", weather: "晴", time: "12:00" },
-      //   { temperature: "22", weather: "晴", time: "13:00" },
-      //   { temperature: "22", weather: "晴", time: "14:00" },
-      //   { temperature: "22", weather: "晴", time: "15:00" },
-      //   { temperature: "22", weather: "晴", time: "16:00" },
-      //   { temperature: "22", weather: "晴", time: "17:00" },
-      //   { temperature: "22", weather: "晴", time: "18:00" },
-      // ],
+      nowMonthDayHourMinSec: "", // "20221225090000"
     };
+  },
+  created() {
+    const date = new Date();
+    const nowYear = date.getFullYear();
+    const nowMonth =
+      date.getMonth() + 1 < 10
+        ? "0" + (date.getMonth() + 1)
+        : "" + date.getMonth() + 1;
+    const nowDay =
+      date.getDate() < 10 ? "0" + date.getDate() : date.getDate() + "";
+    const nowHour =
+      date.getHours() < 10 ? "0" + date.getHours() : date.getHours() + "";
+    const nowMinute =
+      date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+    const nowSecond =
+      date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+
+    this.nowMonthDayHourMinSec =
+      nowYear +
+      "" +
+      nowMonth +
+      "" +
+      nowDay +
+      "" +
+      nowHour +
+      "" +
+      nowMinute +
+      "" +
+      nowSecond;
+  },
+  methods: {
   },
 };
 </script>
