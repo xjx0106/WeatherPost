@@ -2,27 +2,31 @@
   <div class="weather-week">
     <div class="title">本周天气</div>
     <div class="weather-days">
-      <div class="weather-day" v-for="(item, index) in weekData" :key="index">
+      <div
+        class="weather-day"
+        v-for="(item, index) in weekDataShow"
+        :key="index"
+      >
         <div class="day-time">
-          {{ weekData[index] && weekData[index].time | showDate }}
+          {{ item.time | showDate }}
         </div>
         <div class="day-data">
           <div class="day-weather-type">
             <div class="day-weather-type-1">
-              {{ weekData[index] && weekData[index].day_weather }}
+              {{ item.day_weather }}
             </div>
             <div class="day-weather-type-to">转</div>
             <div class="day-weather-type-2">
-              {{ weekData[index] && weekData[index].night_weather }}
+              {{ item.night_weather }}
             </div>
           </div>
           <div class="day-weather-temperature">
             <div class="day-tp-1">
-              {{ weekData[index] && weekData[index].min_degree }}
+              {{ item.min_degree }}
             </div>
             <div class="day-tp-to">~</div>
             <div class="day-tp-2">
-              {{ weekData[index] && weekData[index].max_degree }}
+              {{ item.max_degree }}
             </div>
             <div class="day-tp-word">度</div>
           </div>
@@ -41,6 +45,29 @@ export default {
       default: () => {
         return {};
       },
+    },
+  },
+  created() {
+    const date = new Date();
+    const nowYear = date.getFullYear();
+    const nowMonth =
+      date.getMonth() + 1 < 10
+        ? "0" + (date.getMonth() + 1)
+        : "" + date.getMonth() + 1;
+    const nowDay =
+      date.getDate() < 10 ? "0" + date.getDate() : date.getDate() + "";
+    this.nowYearMonthDay = nowYear + "-" + nowMonth + "-" + nowDay;
+  },
+  computed: {
+    weekDataShow() {
+      let dataArr = [];
+      for (let i in this.weekData) {
+        dataArr.push(this.weekData[i]);
+      }
+      const res = dataArr.filter(day => {
+        return day.time >= this.nowYearMonthDay;
+      })
+      return res;
     },
   },
   filters: {
@@ -74,7 +101,9 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      nowYearMonthDay: "",
+    };
   },
 };
 </script>
