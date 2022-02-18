@@ -33,8 +33,25 @@ export default {
       // const year = fullTime.substring(0, 4);
       // const month = fullTime.substring(4, 6);
       const day = fullTime.substring(6, 8);
-      const hour = fullTime.substring(8, 10);
+      let day_show = "";
+      const date = new Date();
+      const nowDay = date.getDate();
 
+      if (parseInt(day) === nowDay - 2) {
+        day_show = "前天";
+      } else if (parseInt(day) === nowDay - 1) {
+        day_show = "昨天";
+      } else if (parseInt(day) === nowDay) {
+        day_show = "今天";
+      } else if (parseInt(day) === nowDay + 1) {
+        day_show = "明天";
+      } else if (parseInt(day) === nowDay + 2) {
+        day_show = "后天";
+      } else {
+        day_show = day + "日"
+      }
+
+      const hour = fullTime.substring(8, 10);
       let _hour = "";
       if (parseInt(hour) >= 0 && parseInt(hour) < 4) {
         if (parseInt(hour) === 0) {
@@ -52,7 +69,7 @@ export default {
         _hour = "晚上" + (hour - 12);
       }
 
-      const timeState = day + "日 " + _hour + "点";
+      const timeState = day_show + _hour + "点";
       return timeState;
     },
   },
