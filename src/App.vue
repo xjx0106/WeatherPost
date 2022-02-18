@@ -2,6 +2,7 @@
   <div id="app">
     <div class="weather-container">
       <WeatherNow :nowData="weatherData.now" :weekData="weatherData.week"/>
+      <WeatherTodayScroll :todayData="weatherData.today" />
       <WeatherToday :todayData="weatherData.today" />
       <WeatherWeek :weekData="weatherData.week" />
       <div class="developer-view">
@@ -43,6 +44,7 @@
 
 <script>
 import WeatherNow from "./components/WeatherNow.vue";
+import WeatherTodayScroll from "./components/WeatherToday_Scroll.vue";
 import WeatherToday from "./components/WeatherToday.vue";
 import WeatherWeek from "./components/WeatherWeek.vue";
 import { jsonp } from "vue-jsonp";
@@ -52,6 +54,7 @@ export default {
   name: "App",
   components: {
     WeatherNow,
+    WeatherTodayScroll,
     WeatherToday,
     WeatherWeek,
     JsonViewer,
