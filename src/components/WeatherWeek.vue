@@ -22,8 +22,9 @@
             </div>
             <div class="day-tp-to">~</div>
             <div class="day-tp-2">
-              {{ weekData[index] && weekData[index].max_degree + " 度"}}
+              {{ weekData[index] && weekData[index].max_degree }}
             </div>
+            <div class="day-tp-word">度</div>
           </div>
         </div>
       </div>
@@ -93,7 +94,6 @@ export default {
     margin-bottom: 30px;
     > :first-child {
       border-top: 3px solid white;
-
     }
     .weather-day {
       border-left: 3px solid white;
@@ -114,34 +114,42 @@ export default {
       .day-data {
         background-color: rgb(167, 215, 255);
         width: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         .day-weather-type {
           display: flex;
           justify-content: center;
           align-items: center;
           .day-weather-type-1 {
-            font-size: 25px;
+            font-size: 27px;
           }
           .day-weather-type-to {
             font-size: 20px;
             margin: 0px 10px;
           }
           .day-weather-type-2 {
-            font-size: 25px;
+            font-size: 27px;
           }
         }
         .day-weather-temperature {
           display: flex;
           justify-content: center;
           align-items: center;
+          line-height: 40px;
           .day-tp-1 {
-            font-size: 25px;
+            font-size: 30px;
           }
           .day-tp-to {
-            font-size: 20px;
-            margin: 0px 10px;
+            font-size: 30px;
+            margin: 0px 12px;
           }
           .day-tp-2 {
-            font-size: 25px;
+            font-size: 30px;
+          }
+          .day-tp-word {
+            font-size: 27px;
+            margin-left: 10px;
           }
         }
       }
