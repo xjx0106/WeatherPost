@@ -11,6 +11,8 @@
   "dependencies": {
     "axios": "^0.26.0",
     "core-js": "^3.6.5",
+    "sass": "^1.49.8",
+    "sass-loader": "^7.1.0",
     "vue": "^2.6.11",
     "vue-json-viewer": "^2.2.21",
     "vue-jsonp": "^2.0.0"
