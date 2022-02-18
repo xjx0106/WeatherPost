@@ -13,7 +13,6 @@
             @click="clickKey(index)"
             :style="developerData.keysChain[developerData.keysChain.length - 1] === index ? 'background-color:rgb(138, 201, 253)' : ''"
           />
-            <!-- :style="developerData.keysChain.includes(index) ? 'background-color:rgb(138, 201, 253)' : ''" -->
         </div>
         <div class="developer-title" v-if="developerData.show">天气预报哦</div>
         <div class="meme-container" v-if="developerData.show">

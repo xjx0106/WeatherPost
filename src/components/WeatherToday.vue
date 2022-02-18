@@ -155,6 +155,12 @@ export default {
     padding-bottom: 50px;
     > :nth-child(1) {
       border-top: 3px solid white;
+      border-radius: 10px 10px 0px 0px;
+      overflow: hidden;
+    }
+    > :last-child {
+      border-radius: 0px 0px 10px 10px;
+      overflow: hidden;
     }
     .weather-hour {
       border-bottom: 3px solid white;
@@ -167,7 +173,7 @@ export default {
       .hour-time {
         background-color: rgb(255, 217, 147);
         width: 56%;
-        font-size: 26px;
+        font-size: 28px;
         display: flex;
         align-items: center;
         > span {

@@ -64,9 +64,9 @@ export default {
       for (let i in this.weekData) {
         dataArr.push(this.weekData[i]);
       }
-      const res = dataArr.filter(day => {
+      const res = dataArr.filter((day) => {
         return day.time >= this.nowYearMonthDay;
-      })
+      });
       return res;
     },
   },
@@ -128,6 +128,12 @@ export default {
     margin-bottom: 30px;
     > :first-child {
       border-top: 3px solid white;
+      border-radius: 10px 10px 0px 0px;
+      overflow: hidden;
+    }
+    > :last-child {
+      border-radius: 0px 0px 10px 10px;
+      overflow: hidden;
     }
     .weather-day {
       border-left: 3px solid white;
