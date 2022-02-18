@@ -1,11 +1,13 @@
 <template>
   <div id="app">
     <div class="weather-container">
-      <div class="img-container">
-        <img class="img-meme" src="./assets/img/doge.jpg" />
-        <img class="img-meme" src="./assets/img/meme.jpg" />
+      <WeatherNow :nowData="weatherData.now" />
+      <WeatherToday :todayData="weatherData.today" />
+      <WeatherWeek :weekData="weatherData.week"/>
+      <div class="meme-container">
+        <img class="img-meme" src="./assets/img/meme/doge.jpg" />
+        <img class="img-meme" src="./assets/img/meme/meme.jpg" />
       </div>
-      <HelloWorld msg="天气预报哦" />
       <div class="btns-container">
         <div @click="getWeather" class="get-weather-btn">获取天气预报</div>
         <div @click="clearWeather" class="get-weather-btn">清除</div>
@@ -13,7 +15,7 @@
       <div class="request-time">{{ requestTime }}</div>
       <div class="json-data-container">
         <JsonViewer
-          :value="weatherData"
+          :value="weatherJsonData"
           :expand-depth="5"
           copyable
           boxed
@@ -26,21 +28,31 @@
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import WeatherNow from "./components/WeatherNow.vue";
+import WeatherToday from "./components/WeatherToday.vue";
+import WeatherWeek from "./components/WeatherWeek.vue";
 import { jsonp } from "vue-jsonp";
 import JsonViewer from "vue-json-viewer";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    WeatherNow,
+    WeatherToday,
+    WeatherWeek,
     JsonViewer,
   },
   data() {
     return {
       weatherUrl: "https://wis.qq.com/weather/common",
-      weatherData: {},
+      weatherJsonData: {},
       requestTime: "",
+
+      weatherData: {
+        now: {},
+        today: {},
+        week: {}
+      }
     };
   },
   created() {},
@@ -55,7 +67,7 @@ export default {
         county: "龙海区",
       });
       if (res && res.data) {
-        this.weatherData = res;
+        this.weatherJsonData = res;
 
         const date = new Date();
         const currentDate =
@@ -95,7 +107,7 @@ export default {
     },
     clearWeather() {
       this.requestTime = "";
-      this.weatherData = {};
+      this.weatherJsonData = {};
     },
   },
 };
@@ -107,12 +119,11 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin-top: 60px;
-  border: 1px solid red;
 }
 .weather-container {
   width: 100%;
-  .img-container {
+  .meme-container {
+    margin-top: 100px;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -136,7 +147,7 @@ export default {
       justify-content: center;
       align-items: center;
       user-select: none;
-      margin: 20px 20px 10px 20px;
+      margin: 0px 20px 10px 20px;
     }
   }
   .request-time {
@@ -145,6 +156,7 @@ export default {
     color: dimgray;
     font-size: 15px;
     height: 20px;
+    margin-bottom: 10px;
   }
   .json-data-container {
     width: 100%;
