@@ -4,9 +4,7 @@
     <div class="weather-hours">
       <div class="weather-hour" v-for="(item, index) in todayData" :key="index">
         <div class="hour-time">
-          <span>
-            {{ todayData[index].update_time | timeFilter }} <br />
-          </span>
+          <span> {{ todayData[index].update_time | timeFilter }} <br /> </span>
         </div>
         <div class="hour-data">
           <div class="hour-temperature">
@@ -48,7 +46,7 @@ export default {
       } else if (parseInt(day) === nowDay + 2) {
         day_show = "后天";
       } else {
-        day_show = day + "日"
+        day_show = day + "日";
       }
 
       const hour = fullTime.substring(8, 10);
@@ -82,7 +80,7 @@ export default {
         const month = fullTime.substring(4, 6);
         const day = fullTime.substring(6, 8);
         const hour = fullTime.substring(8, 10);
-        console.log(year + "年" + month + "月" + day + "日" + hour + "时");
+        // console.log(year + "年" + month + "月" + day + "日" + hour + "时");
 
         const timeState = year + "年" + month + "月" + day + "日" + hour + "时";
         return timeState;
@@ -148,6 +146,9 @@ export default {
         background-color: rgb(255, 200, 97);
         width: 44%;
         font-size: 28px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         .hour-temperature {
         }
         .hour-type {

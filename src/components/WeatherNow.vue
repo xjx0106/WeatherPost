@@ -1,13 +1,14 @@
 <template>
   <div class="weather-now">
-    <div class="title">
-      今天天气
-    </div>
+    <div class="title">今天天气</div>
     <div class="weather-type">
-      天气 {{ nowData.weather }}
+      <div class="weather-type-key">天气</div>
+      <div class="weather-type-value">{{ nowData.weather }}</div>
     </div>
     <div class="temperature">
-      气温 {{ nowData.degree }} 度
+      <div class="temperature-key">气温</div>
+      <div class="temperature-value">{{ nowData.degree }}</div>
+      <div class="temperature-key">度</div>
     </div>
   </div>
 </template>
@@ -18,13 +19,12 @@ export default {
   props: {
     nowData: Object,
     default: () => {
-      return {}
-    }
+      return {};
+    },
   },
   data() {
-    return {
-    }
-  }
+    return {};
+  },
 };
 </script>
 
@@ -42,10 +42,36 @@ export default {
   .weather-type {
     font-size: 70px;
     margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .weather-type-key {
+    }
+    .weather-type-value {
+      margin: 0px 10px;
+      display: flex;
+      align-items: center;
+      background-color: rgb(239, 255, 215);
+      border-radius: 20px;
+      padding: 10px;
+    }
   }
   .temperature {
+    display: flex;
+    justify-content: center;
     font-size: 70px;
-    margin-top: 15;
+    margin-top: 20px;
+    align-items: center;
+    .temperature-key {
+    }
+    .temperature-value {
+      margin: 0px 10px;
+      display: flex;
+      align-items: center;
+      background-color: rgb(239, 255, 215);
+      border-radius: 20px;
+      padding: 10px;
+    }
   }
 }
 </style>

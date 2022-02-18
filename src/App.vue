@@ -3,25 +3,40 @@
     <div class="weather-container">
       <WeatherNow :nowData="weatherData.now" />
       <WeatherToday :todayData="weatherData.today" />
-      <WeatherWeek :weekData="weatherData.week"/>
-      <div class="meme-container">
-        <img class="img-meme" src="./assets/img/meme/doge.jpg" />
-        <img class="img-meme" src="./assets/img/meme/meme.jpg" />
-      </div>
-      <div class="btns-container">
-        <div @click="getWeather" class="get-weather-btn">获取天气预报</div>
-        <div @click="clearWeather" class="get-weather-btn">清除</div>
-      </div>
-      <div class="request-time">{{ requestTime }}</div>
-      <div class="json-data-container">
-        <JsonViewer
-          :value="weatherJsonData"
-          :expand-depth="5"
-          copyable
-          boxed
-          sort
-          class="json-data"
-        />
+      <WeatherWeek :weekData="weatherData.week" />
+      <div class="developer-view">
+        <div class="enter-keys">
+          <div
+            v-for="(item, index) in developerData.keyData"
+            :key="index"
+            class="enter-key"
+            @click="clickKey(index)"
+            :style="developerData.keysChain[developerData.keysChain.length - 1] === index ? 'background-color:rgb(138, 201, 253)' : ''"
+          />
+            <!-- :style="developerData.keysChain.includes(index) ? 'background-color:rgb(138, 201, 253)' : ''" -->
+        </div>
+        <div class="developer-title" v-if="developerData.show">天气预报哦</div>
+        <div class="meme-container" v-if="developerData.show">
+          <img class="img-meme" src="./assets/img/meme/doge.jpg" />
+          <img class="img-meme" src="./assets/img/meme/meme.jpg" />
+        </div>
+        <div class="btns-container" v-if="developerData.show">
+          <div @click="getWeather" class="get-weather-btn">获取天气预报</div>
+          <div @click="clearWeather" class="get-weather-btn">清除</div>
+        </div>
+        <div class="request-time" v-if="developerData.show">
+          {{ requestTime }}
+        </div>
+        <div class="json-data-container" v-if="developerData.show">
+          <JsonViewer
+            :value="weatherJsonData"
+            :expand-depth="5"
+            copyable
+            boxed
+            sort
+            class="json-data"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -51,8 +66,13 @@ export default {
       weatherData: {
         now: {},
         today: {},
-        week: {}
-      }
+        week: {},
+      },
+      developerData: {
+        keyData: [false, false, false, false, false],
+        keysChain: [],
+        show: false,
+      },
     };
   },
   created() {},
@@ -73,7 +93,6 @@ export default {
         this.weatherData.now = res.data.observe;
         this.weatherData.today = res.data.forecast_1h;
         this.weatherData.week = res.data.forecast_24h;
-
 
         const date = new Date();
         const currentDate =
@@ -115,6 +134,24 @@ export default {
       this.requestTime = "";
       this.weatherJsonData = {};
     },
+    clickKey(keyIndex) {
+      if (!this.developerData.show) {
+        this.developerData.keyData[keyIndex] = true;
+        if (this.developerData.keysChain.length < 3) {
+          this.developerData.keysChain.push(keyIndex);
+        } else {
+          this.developerData.keysChain.shift();
+          this.developerData.keysChain.push(keyIndex);
+        }
+        if (this.developerData.keysChain.join("") === "042") {
+          this.developerData.show = true;
+          this.developerData.keysChain = [];
+        }
+      } else {
+        this.developerData.show = false;
+        this.developerData.keysChain = [];
+      }
+    },
   },
 };
 </script>
@@ -128,48 +165,66 @@ export default {
 }
 .weather-container {
   width: 100%;
-  .meme-container {
-    margin-top: 100px;
+  .developer-view {
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    > .img-meme {
-      width: 150px;
-      height: 150px;
-      margin: 15px;
+    .enter-keys {
+      width: 100%;
+      display: flex;
+      .enter-key {
+        background-color: rgb(128, 198, 255);
+        height: 20vw;
+        width: 20vw;
+      }
     }
-  }
-  .btns-container {
-    display: flex;
-    justify-content: center;
-    .get-weather-btn {
-      border: 1px solid #188cff;
-      height: 40px;
-      width: 120px;
-      border-radius: 4px;
+    .developer-title {
+      padding-top: 40px;
+      font-size: 24px;
+      text-align: center;
+    }
+    .meme-container {
+      margin-top: 20px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      > .img-meme {
+        width: 150px;
+        height: 150px;
+        margin: 15px;
+      }
+    }
+    .btns-container {
       display: flex;
       justify-content: center;
-      align-items: center;
-      user-select: none;
-      margin: 0px 20px 10px 20px;
+      .get-weather-btn {
+        border: 1px solid #188cff;
+        height: 40px;
+        width: 120px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        user-select: none;
+        margin: 0px 20px 10px 20px;
+      }
     }
-  }
-  .request-time {
-    width: 100%;
-    text-align: center;
-    color: dimgray;
-    font-size: 15px;
-    height: 20px;
-    margin-bottom: 10px;
-  }
-  .json-data-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    .json-data {
-      width: 95%;
+    .request-time {
+      width: 100%;
+      text-align: center;
+      color: dimgray;
+      font-size: 15px;
+      height: 20px;
+      margin-bottom: 10px;
+    }
+    .json-data-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 50px;
+      .json-data {
+        width: 95%;
+      }
     }
   }
 }
