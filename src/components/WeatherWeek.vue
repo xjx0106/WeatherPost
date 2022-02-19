@@ -116,7 +116,7 @@ export default {
   background-color: rgb(128, 198, 255);
   padding-bottom: 50px;
   .title {
-    font-size: 65px;
+    font-size: 50px;
     padding-top: 50px;
   }
   .weather-days {
@@ -145,7 +145,7 @@ export default {
       display: flex;
       .day-time {
         width: 40%;
-        font-size: 28px;
+        font-size: 23px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -162,33 +162,33 @@ export default {
           justify-content: center;
           align-items: center;
           .day-weather-type-1 {
-            font-size: 27px;
+            font-size: 24px;
           }
           .day-weather-type-to {
-            font-size: 20px;
+            font-size: 18px;
             margin: 0px 10px;
           }
           .day-weather-type-2 {
-            font-size: 27px;
+            font-size: 24px;
           }
         }
         .day-weather-temperature {
           display: flex;
           justify-content: center;
           align-items: center;
-          line-height: 40px;
+          line-height: 36px;
           .day-tp-1 {
-            font-size: 30px;
+            font-size: 26px;
           }
           .day-tp-to {
-            font-size: 30px;
+            font-size: 26px;
             margin: 0px 12px;
           }
           .day-tp-2 {
-            font-size: 30px;
+            font-size: 26px;
           }
           .day-tp-word {
-            font-size: 27px;
+            font-size: 24px;
             margin-left: 10px;
           }
         }

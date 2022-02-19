@@ -3,7 +3,7 @@
     <div class="weather-container">
       <WeatherNow :nowData="weatherData.now" :weekData="weatherData.week"/>
       <WeatherTodayScroll :todayData="weatherData.today" />
-      <WeatherToday :todayData="weatherData.today" />
+      <WeatherToday :todayData="weatherData.today" v-if="false" />
       <WeatherWeek :weekData="weatherData.week" />
       <div class="developer-view">
         <div class="enter-keys">

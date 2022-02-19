@@ -150,11 +150,11 @@ export default {
 .weather-today {
   text-align: center;
   font-size: 20px;
-  background-color: rgb(131, 216, 255);
+  background-color: rgb(255, 174, 241);
   width: 100%;
   padding-bottom: 70px;
   .title {
-    font-size: 65px;
+    font-size: 50px;
     padding-top: 50px;
   }
   .weather-hours-container {
@@ -181,10 +181,10 @@ export default {
           flex-direction: column;
           justify-content: center;
           > :first-child {
-            font-size: 36px;
+            font-size: 30px;
           }
           > :last-child {
-            font-size: 40px;
+            font-size: 33px;
           }
         }
         .hour-data {
@@ -194,10 +194,10 @@ export default {
           flex-direction: column;
           justify-content: center;
           .hour-temperature {
-            font-size: 40px;
+            font-size: 34px;
           }
           .hour-type {
-            font-size: 38px;
+            font-size: 34px;
           }
         }
       }

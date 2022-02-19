@@ -144,7 +144,7 @@ export default {
   font-size: 20px;
   background-color: rgb(255, 193, 78);
   .title {
-    font-size: 65px;
+    font-size: 50px;
     padding-top: 50px;
   }
   .weather-hours {
@@ -173,7 +173,7 @@ export default {
       .hour-time {
         background-color: rgb(255, 217, 147);
         width: 56%;
-        font-size: 28px;
+        font-size: 24px;
         display: flex;
         align-items: center;
         > span {
@@ -187,10 +187,10 @@ export default {
         flex-direction: column;
         justify-content: center;
         .hour-temperature {
-          font-size: 28px;
+          font-size: 22px;
         }
         .hour-type {
-          font-size: 28px;
+          font-size: 22px;
         }
       }
     }

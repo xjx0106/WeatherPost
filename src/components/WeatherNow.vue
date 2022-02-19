@@ -111,24 +111,23 @@ export default {
 <style scoped lang="scss">
 .weather-now {
   text-align: center;
-  font-size: 20px;
   height: 600px;
   background-color: rgb(208, 255, 132);
   .title {
-    font-size: 60px;
+    font-size: 50px;
     padding-top: 80px;
   }
   .weather-type {
-    margin-top: 40px;
+    margin-top: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
     .weather-type-key {
-      font-size: 50px;
+      font-size: 35px;
       margin: 0px 10px;
     }
     .weather-type-value {
-      font-size: 60px;
+      font-size: 42px;
       display: flex;
       align-items: center;
       background-color: rgb(239, 255, 215);
@@ -139,14 +138,14 @@ export default {
   .temperature {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 27px;
     align-items: center;
     .temperature-key {
-      font-size: 50px;
+      font-size: 38px;
       margin: 0px 10px;
     }
     .temperature-value {
-      font-size: 60px;
+      font-size: 42px;
       display: flex;
       align-items: center;
       background-color: rgb(239, 255, 215);
