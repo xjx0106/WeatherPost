@@ -1,6 +1,6 @@
 <template>
   <div class="weather-today">
-    <div class="title">未来的<br />12个小时</div>
+    <div class="title">未来的<br />18个小时</div>
     <div class="weather-hours-container">
       <div class="weather-hours">
         <div
@@ -101,8 +101,8 @@ export default {
         return item.update_time > this.nowMonthDayHourMinSec;
       });
       let res = [];
-      if (hoursAfter.length > 12) {
-        res = hoursAfter.slice(0, 12);
+      if (hoursAfter.length > 18) {
+        res = hoursAfter.slice(0, 18);
       }
       return res;
     },
