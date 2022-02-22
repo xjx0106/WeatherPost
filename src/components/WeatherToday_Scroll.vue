@@ -168,7 +168,7 @@ export default {
     .weather-hours {
       display: flex;
       width: fit-content;
-      width: calc(200px * 12);
+      width: calc(200px * 18);
 
       .weather-hour {
         border-right: 2px solid rgb(230, 240, 255);
