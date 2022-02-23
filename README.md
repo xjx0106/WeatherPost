@@ -1,24 +1,9 @@
-# weather
+# Weather Post
+## A weather post front-end webpage for caring old ppl.
 
-## Project setup
-```
-npm install
-```
+#### **V.1.0**
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+The first version, V.1.0, was released on February 23th, 2022, with 3 modules for today's, these days, and the next few hours' weather forecast.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+![003.jpg](https://github.com/xjx0106/myGithubReadmeImages/blob/master/WeatherPost/003.jpg?raw=true)
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
