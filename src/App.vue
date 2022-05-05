@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="weather-container">
-      <WeatherNow :nowData="weatherData.now" :weekData="weatherData.week"/>
+      <WeatherNow :nowData="weatherData.now" :weekData="weatherData.week" />
       <WeatherTodayScroll :todayData="weatherData.today" />
       <WeatherToday :todayData="weatherData.today" v-if="false" />
       <WeatherWeek :weekData="weatherData.week" />
@@ -12,7 +12,12 @@
             :key="index"
             class="enter-key"
             @click="clickKey(index)"
-            :style="developerData.keysChain[developerData.keysChain.length - 1] === index ? 'background-color:rgb(138, 201, 253)' : ''"
+            :style="
+              developerData.keysChain[developerData.keysChain.length - 1] ===
+              index
+                ? 'background-color:rgb(138, 201, 253)'
+                : ''
+            "
           />
         </div>
         <div class="developer-title" v-if="developerData.show">天气预报哦</div>
@@ -36,6 +41,13 @@
             sort
             class="json-data"
           />
+        </div>
+        <div
+          class="download-btn"
+          v-if="developerData.show"
+          @click="downloadApk"
+        >
+          下载安装包
         </div>
       </div>
     </div>
@@ -154,6 +166,18 @@ export default {
         this.developerData.keysChain = [];
       }
     },
+    downloadApk() {
+      console.log("download apk");
+
+      const a = document.createElement("a");
+      const url = "./source/WeatherPost.apk";
+
+      a.href = url;
+      a.download = "WeatherPost.apk";
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    },
   },
 };
 </script>
@@ -227,6 +251,23 @@ export default {
       .json-data {
         width: 95%;
       }
+    }
+    .download-btn {
+      margin: 0px auto;
+      background-color: rgb(68, 166, 246);
+      height: 45px;
+      width: 140px;
+      border-radius: 5px;
+      font-size: 20px;
+      font-family: "黑体";
+      color: white;
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      flex-direction: column;
+      margin-top: 20px;
+      margin-bottom: 100px;
+      user-select: none;
     }
   }
 }
