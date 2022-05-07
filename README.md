@@ -7,3 +7,10 @@ The first version, V.1.0, was released on February 23th, 2022, with 3 modules fo
 
 ![003.jpg](https://github.com/xjx0106/myGithubReadmeImages/blob/master/WeatherPost/003.jpg?raw=true)
 
+
+
+
+<hr />
+
+Special thanks to [@rmshadows](https://github.com/rmshadows) who is responsible for the packaging of the [Android apk](https://gitee.com/rmshadows/html-template/tree/master/websites/apks).
+
