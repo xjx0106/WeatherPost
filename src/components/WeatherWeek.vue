@@ -116,7 +116,7 @@ export default {
   background-color: rgb(128, 198, 255);
   padding-bottom: 50px;
   .title {
-    font-size: 50px;
+    font-size: 53px;
     padding-top: 50px;
   }
   .weather-days {
@@ -140,12 +140,12 @@ export default {
       border-right: 3px solid white;
       border-bottom: 3px solid white;
       height: 100px;
-      width: calc(100% - 40px);
-      margin: 0px 20px;
+      width: calc(100% - 30px);
+      margin: 0px 15px;
       display: flex;
       .day-time {
-        width: 40%;
-        font-size: 23px;
+        width: 43%;
+        font-size: 30px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -153,7 +153,7 @@ export default {
       }
       .day-data {
         background-color: rgb(167, 215, 255);
-        width: 60%;
+        width: 57%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -162,14 +162,14 @@ export default {
           justify-content: center;
           align-items: center;
           .day-weather-type-1 {
-            font-size: 24px;
+            font-size: 30px;
           }
           .day-weather-type-to {
-            font-size: 18px;
+            font-size: 22px;
             margin: 0px 10px;
           }
           .day-weather-type-2 {
-            font-size: 24px;
+            font-size: 30px;
           }
         }
         .day-weather-temperature {
@@ -178,14 +178,23 @@ export default {
           align-items: center;
           line-height: 36px;
           .day-tp-1 {
-            font-size: 26px;
+            font-size: 30px;
+            padding: 3px;
+            line-height: 30px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.6);
           }
           .day-tp-to {
             font-size: 26px;
             margin: 0px 12px;
           }
           .day-tp-2 {
-            font-size: 26px;
+            font-size: 30px;
+            padding: 3px;
+            line-height: 30px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.6);
+          
           }
           .day-tp-word {
             font-size: 24px;

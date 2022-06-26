@@ -114,7 +114,7 @@ export default {
   height: 600px;
   background-color: rgb(208, 255, 132);
   .title {
-    font-size: 50px;
+    font-size: 67px;
     padding-top: 80px;
   }
   .weather-type {
@@ -127,7 +127,7 @@ export default {
       margin: 0px 10px;
     }
     .weather-type-value {
-      font-size: 42px;
+      font-size: 50px;
       display: flex;
       align-items: center;
       background-color: rgb(239, 255, 215);
@@ -141,11 +141,11 @@ export default {
     margin-top: 27px;
     align-items: center;
     .temperature-key {
-      font-size: 38px;
+      font-size: 48px;
       margin: 0px 10px;
     }
     .temperature-value {
-      font-size: 42px;
+      font-size: 50px;
       display: flex;
       align-items: center;
       background-color: rgb(239, 255, 215);

@@ -14,7 +14,10 @@
           </div>
           <div class="hour-data">
             <div class="hour-temperature">
-              {{ "温度:" + item.degree }}
+              <span> 温度: </span>
+              <span class="hour-temperature-number">
+                {{ item.degree }}
+              </span>
             </div>
             <div class="hour-type">
               {{ "天气:" + item.weather }}
@@ -154,7 +157,7 @@ export default {
   width: 100%;
   padding-bottom: 70px;
   .title {
-    font-size: 50px;
+    font-size: 56px;
     padding-top: 50px;
   }
   .weather-hours-container {
@@ -164,7 +167,7 @@ export default {
     overflow-x: auto;
     border: 3px solid white;
     border-radius: 10px;
-    margin-top: 30px;
+    margin-top: 20px;
     .weather-hours {
       display: flex;
       width: fit-content;
@@ -181,10 +184,10 @@ export default {
           flex-direction: column;
           justify-content: center;
           > :first-child {
-            font-size: 30px;
+            font-size: 40px;
           }
           > :last-child {
-            font-size: 33px;
+            font-size: 40px;
           }
         }
         .hour-data {
@@ -194,10 +197,19 @@ export default {
           flex-direction: column;
           justify-content: center;
           .hour-temperature {
-            font-size: 34px;
+            // font-size: 40px;
+            > span {
+              font-size: 40px;
+            }
+            .hour-temperature-number {
+              line-height: 40px;
+              padding: 5px 7px;
+              background-color: rgba(255, 255, 255, 0.3);
+              border-radius: 10px;
+            }
           }
           .hour-type {
-            font-size: 34px;
+            font-size: 40px;
           }
         }
       }

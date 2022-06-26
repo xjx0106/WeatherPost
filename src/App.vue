@@ -91,7 +91,9 @@ export default {
   },
   created() {},
   mounted() {
-    this.getWeather();
+    this.$nextTick(() => {
+      this.getWeather();
+    });
   },
   methods: {
     async getWeather() {
