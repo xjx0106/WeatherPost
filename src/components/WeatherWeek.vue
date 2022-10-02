@@ -50,10 +50,12 @@ export default {
   created() {
     const date = new Date();
     const nowYear = date.getFullYear();
+    const monthAdd1 = date.getMonth() + 1; // if now is september then date.getMonth() returns 8, so monthAdd1 is 9
+
     const nowMonth =
-      date.getMonth() + 1 < 10
-        ? "0" + (date.getMonth() + 1)
-        : "" + date.getMonth() + 1;
+      monthAdd1 < 10
+        ? "0" + monthAdd1
+        : "" + monthAdd1;
     const nowDay =
       date.getDate() < 10 ? "0" + date.getDate() : date.getDate() + "";
     this.nowYearMonthDay = nowYear + "-" + nowMonth + "-" + nowDay;
